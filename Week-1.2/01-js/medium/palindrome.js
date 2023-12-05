@@ -17,7 +17,6 @@ function isPalindrome(str) {
 
   let reversed = refined.split('').reverse().join('');
 
-  console.log(reversed);
   if(refined === reversed) {
     return true;
   }
