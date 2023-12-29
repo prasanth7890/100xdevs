@@ -18,7 +18,6 @@ function Todo(props) {
   }
 
   function updateHandle() {
-    console.log(newDesc, newTitle);
     setTitle(newTitle);
     setDesc(newDesc);
   }
