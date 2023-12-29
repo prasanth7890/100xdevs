@@ -1,15 +1,27 @@
 import { useState } from "react";
+import Todo from "./components/Todo"
+
+var globalId = 1;
 
 function First() {
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
+  const [todoState, setTodoState] = useState([]);
+
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   function addTodo() {
-    console.log(title, description);// TODO:resume doing this todo app;
+    const newTodo = {
+      title: title,
+      description: description,
+      id: globalId++,
+    }
+
+    console.log(newTodo);
+
+    setTodoState([...todoState, newTodo]);
   }
   
-
-
   return (
     <div>
       <h1>Todo App with Usestate</h1>
@@ -20,6 +32,9 @@ function First() {
       <button onClick={addTodo}>Add todo</button>
 
       <div id="todos"></div>
+      {todoState.map((todo)=> {
+        return <Todo key={todo.id} title={todo.title} desc={todo.description}></Todo>
+      })}
     </div>
   )
 }
