@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Crimson+Pro:wght@300&family=Josefin+Sans:wght@300&family=Lobster&family=Roboto:wght@300&family=Source+Code+Pro:wght@300&display=swap');
+
+body {
+    font-family: 'Josefin Sans';
+}
+
+img {
+    border-radius: 50%;  
+    width: 100px;
+    height: 100px; 
+    position: absolute;
+    border: solid rgb(255, 255, 255);
+}
+
+.background {
+    background-color: aqua;
+    height: 40%;
+}
+
+.image {
+    position: relative;
+    left: 35%;
+    top: 22%;
+}
