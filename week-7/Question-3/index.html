@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom React</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    // Step 1: Create an object for the React element with HTML anchor data
+    const reactElement = {
+      type: 'a',
+      props: {
+        href: 'https://www.google.com',
+        target: '_blank',
+        children: ['Click me to Visit Google']
+      }
+    };
+
+    // Step 2: Create a function that generates HTML code from the React element
+    function generateHtml(reactElement) {
+      if (typeof reactElement === 'string') {
+        return reactElement;
+      }
+
+      const { type, props } = reactElement;
+      const children = props.children || [];
+      const childrenHtml = children.map(child => generateHtml(child)).join('');
+
+      const keys = Object.keys(props);
+      let attributes = keys.map(key => {
+        return `${key}="${props[key]}"` 
+      });
+
+      attributes = attributes.join(' ');
+    
+    //   console.log(`<${type} ${Object.keys(props).map(key => `${key}="${props[key]}"`).join(' ')}>${childrenHtml}</${type}>`);
+      return `<${type} ${attributes} >${childrenHtml}</${type}>`;
+    }
+
+    // Step 3: Create a function customRender to render the HTML at a specific path
+    function customRender(element, path) {
+      const targetElement = document.querySelector(path);
+      if (targetElement) {
+        targetElement.innerHTML = generateHtml(element);
+      } else {
+        console.error(`Element with path "${path}" not found.`);
+      }
+    }
+
+    // Render the anchor tag to the element with id 'root'
+    customRender(reactElement, '#root');
+  </script>
+</body>
+</html>
