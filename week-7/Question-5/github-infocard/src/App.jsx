@@ -65,17 +65,17 @@ function App() {
 
           <div className="stats">
             <div className="inner">
-              <div>Repos</div>
+              <div><b>Repos</b></div>
               <div>{user?.public_repos}</div>
             </div>
 
             <div className="inner">
-              <div>Followers</div>
+              <div><b>Followers</b></div>
               <div>{user?.followers}</div>
             </div>
 
             <div className="inner">
-              <div>Following</div>
+              <div><b>Following</b></div>
               <div>{user?.following}</div>
             </div>
           </div>
