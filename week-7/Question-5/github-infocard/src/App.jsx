@@ -19,8 +19,12 @@ function App() {
     const response = await fetch(`https://api.github.com/users/${state}`);
     const userDetails = await response.json();
 
-    if(userDetails) {
+    if(userDetails && userDetails.login) {
       setUser(userDetails);
+    }
+    else {
+      alert('Enter a Valid Username');
+      return;
     }
   }
 
