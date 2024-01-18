@@ -4,11 +4,19 @@
     position: relative;
     align-items: center;
 }
+
+
 .profile-div {
+    color: white;
+    background-color: black;
     margin-top: 10px;
     border: 1px solid black;
     height: 400px;
-    width: 400px;
+    width: 400px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;   
 }
 
 img {
@@ -16,5 +24,28 @@ img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 2px white solid;
+    border: 2px rgb(255, 255, 255) solid;
+}
+
+.username span {
+    margin-right: 10px;
+}
+
+a {
+    color: white;
+}
+
+.location {
+    margin-right: 20px;
+}
+
+.stats {
+    display: flex;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
 }
