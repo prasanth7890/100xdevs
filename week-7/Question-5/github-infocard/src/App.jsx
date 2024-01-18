@@ -1,68 +1,83 @@
-import { useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
   const [state, setState] = useState("");
   const [user, setUser] = useState();
 
+  useEffect(()=> {
+    async function getInitState() {
+      const response = await fetch(`https://api.github.com/users/hkirat`);
+      const userDetails = await response.json();
+      setUser(userDetails);
+    }
+
+    getInitState();
+  },[]);
+
   async function handleClick() {
     const response = await fetch(`https://api.github.com/users/${state}`);
     const userDetails = await response.json();
-    
+
     if(userDetails) {
-      console.log(userDetails);
+      setUser(userDetails);
     }
   }
 
   return (
-    <div className="main">
-      <div>
-        <input
-          type="text"
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        />
-        <button onClick={handleClick}>Search</button>
-      </div>
-
-      <div className="profile-div">
+    <>
+      <div className="main">
         <div>
-          <img
-            src="https://cdn5.vectorstock.com/i/1000x1000/65/54/cute-anime-girl-in-black-hoodie-and-green-eyes-vector-39706554.jpg"
-            alt="image"
+          <input
+          placeholder="Enter Username"
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
           />
+          <button onClick={handleClick}>Search</button>
         </div>
 
-        <div>Prasanth</div>
+        <h2>GITHUB INFO CARD</h2>
 
-        <div className="username">
-          <span>prasanth7890</span>
-          <a href="">GITHUB</a>
-        </div>
-
-        <div>
-          <span className="location">From: location</span>
-          <span>email: useremail</span>
-        </div>
-
-        <div className="stats">
-          <div className="inner">
-            <div>Repos</div>
-            <div>count</div>
+        <div className="profile-div">
+          <div>
+            <img
+              src={user?.avatar_url}
+              alt="image"
+            />
           </div>
 
-          <div className="inner">
-            <div>followers</div>
-            <div>count</div>
+          <div><b>Name</b>: {user?.name}</div>
+
+          <div className="username">
+            <span><b>Username</b>: {user?.login}</span>
+            <a target="_blank" href={user?.html_url}>GITHUB</a>
           </div>
 
-          <div className="inner">
-            <div>following</div>
-            <div>count</div>
+          <div>
+            <span className="location"><b>From</b>: {user?.location}</span>
+            <span><b>Email</b>: {user?.email}</span>
+          </div>
+
+          <div className="stats">
+            <div className="inner">
+              <div>Repos</div>
+              <div>{user?.public_repos}</div>
+            </div>
+
+            <div className="inner">
+              <div>Followers</div>
+              <div>{user?.followers}</div>
+            </div>
+
+            <div className="inner">
+              <div>Following</div>
+              <div>{user?.following}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
