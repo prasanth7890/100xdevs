@@ -1,0 +1,20 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+.profile-div {
+    margin-top: 10px;
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+}
+
+img {
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px white solid;
+}
