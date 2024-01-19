@@ -1,0 +1,40 @@
+.main {
+    background-color: black;
+    height: 400px;
+    width: 400px;
+    position: relative;
+    left: 36%;
+    top: 130px;
+    border-radius: 40px;
+}
+
+.inner {
+    color: white;
+    border: 1px solid white;
+    height: 380px;
+    width: 380px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin-top: 20px;
+    max-width: 100px;
+    height: 30px;
+}
+
+.otp-div {
+    display: flex;
+}
+
+.otp {
+    width: 10px;
+    margin-right: 10px;
+    border-color: none;
+}
