@@ -10,7 +10,7 @@ function App() {
 
   function handleInput(target) {
     const value = target.value;
-    // if entered char is not a number then, it gets replaced.
+    
     if(isNaN(value)) {
       target.value = "";
       return;
@@ -23,7 +23,7 @@ function App() {
     }
   }
 
-  function hanldeOnkeyup(e) {
+  function handleOnkeyup(e) {
     const key = e.key;
 
     if(key == "Backspace") {
@@ -48,10 +48,10 @@ function App() {
           ) : (
             <>
               <div className="otp-div">
-                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{hanldeOnkeyup(e)}}/>
-                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{hanldeOnkeyup(e)}}/>
-                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{hanldeOnkeyup(e)}}/>
-                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{hanldeOnkeyup(e)}}/>
+                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{handleOnkeyup(e)}}/>
+                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{handleOnkeyup(e)}}/>
+                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{handleOnkeyup(e)}}/>
+                <input type="text" className="otp" onInput={(e)=>{handleInput(e.target)}} onKeyUp={(e)=>{handleOnkeyup(e)}}/>
               </div>
               <button>Login</button>
               <button onClick={()=>setRender(false)}>go back</button>
