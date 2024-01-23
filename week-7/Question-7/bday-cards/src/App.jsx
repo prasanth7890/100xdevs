@@ -1,15 +1,15 @@
 import './App.css';
 import { useRecoilState } from 'recoil';
 import { nameAtom } from './atom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 
 function App() {
 
   const [name, setName] = useRecoilState(nameAtom);
 
-  const [wish, setWish] = useState('');
-  const [wish2, setWish2] = useState('');
+  const [wish, setWish] = useState(null);
+  const [wish2, setWish2] = useState(null);
 
   const Wishes = [
     `Happy Birthday, ${name}! May your day be filled with laughter, joy, and unforgettable moments!`,
@@ -30,26 +30,24 @@ function App() {
 
     setWish(Wishes[indx1]);
     setWish2(Wishes[indx2]);
-
   }
 
 
   return (
     <div className='flex justify-center items-center relative top-20 flex-col'>
-        <div className='bg-red-500 h-[250px] w-[500px] rounded-md flex flex-col items-center justify-center mb-5 opacity-85'>
+        <div className='bg-black h-[250px] w-[500px] rounded-md flex flex-col items-center justify-center mb-5 opacity-80'>
           <h2 className='text-3xl font-bold text-white mb-5'>Enter Your Name</h2>
           <input type="text" className='w-[400px] mb-5' onChange={(e)=>setName(e.target.value.trim())} value={name}/>
           <button className='w-[60px] h-[40px] bg-blue-600 rounded-md' onClick={generateWishes}>Done</button>
-        </div>  
+        </div> 
 
-        {name.length > 0  ? (
+        {name.length > 0 ? (
           <div className='flex'>
             <Card wish={wish}/>
             <Card wish={wish2}/>
           </div>
-
-        ): (
-          ''
+        ) : (
+          <></>
         )}
 
         
@@ -59,9 +57,9 @@ function App() {
 
 function Card({wish}) {
   return(
-    <div className='max-h-[300px] max-w-[400px] bg-black rounded-md text-white pt-[40px] pb-[40px] pl-[30px] pr-[30px] text-center mr-3 ml-3'>
+    <div className='max-h-[300px] max-w-[400px] bg-slate-100 rounded-md text-black font-bold pt-[40px] pb-[40px] pl-[30px] pr-[30px] text-center mr-3 ml-3'>
             <p>
-              {wish}
+              {wish == null ? "" : wish}
             </p>
     </div>
   )

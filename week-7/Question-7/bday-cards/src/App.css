@@ -1,3 +1,5 @@
 body {
-    background-color: rgb(79, 199, 255);
+    background-image: url('https://wallpapercosmos.com/w/full/6/3/3/169452-3840x2160-desktop-4k-balloons-background-photo.jpg');
+    background-size: cover;
+    /* filter: blur(2px); */
 }
