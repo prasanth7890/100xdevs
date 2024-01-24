@@ -13,7 +13,7 @@ const ValidUser = z.object({
     password: z.string()
 });
 
-router.post('/singup', async (req, res)=>{
+router.post('/signup', async (req, res)=>{
     const details = req.body;
     const ParsedUser = ValidUser.safeParse(details);
     if(ParsedUser.success) {
@@ -58,7 +58,7 @@ const signIn = z.object({
 })
 
 
-router.post('/singin', async (req, res)=>{
+router.post('/signin', async (req, res)=>{
     const parsedUser = signIn.safeParse(req.body);
 
     if(!parsedUser.success) {

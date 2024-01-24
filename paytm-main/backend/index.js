@@ -13,5 +13,5 @@ app.use('/api/v1', apiRouter);
 
 
 app.listen(3000, ()=> {
-    console.log('app running...');
+    console.log('Running on port 3000');
 })
