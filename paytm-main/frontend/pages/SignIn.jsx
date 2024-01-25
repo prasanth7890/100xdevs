@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 const SignIn = () => {
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    if(localStorage.getItem('token')) {
+      navigate('/dashboard');
+    }
+    else {
+      console.log('Login/SignIn First');
+      return;
+    }
+  })
+
+
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
@@ -16,6 +28,7 @@ const SignIn = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/user/signin', credentials);
       if(response.statusText === "OK" && response.status === 200) {
+        localStorage.setItem('token', response.data.token);
         navigate('/dashboard');
       }
     }catch(error) {
@@ -64,9 +77,7 @@ const SignIn = () => {
 
           <div className="mb-5">
             Don't have an account?{" "}
-            <a href="" className="underline">
-              Sign Up
-            </a>
+            <Link to={'/signup'} className="underline">Sign Up</Link>
           </div>
         </div>
       </div>

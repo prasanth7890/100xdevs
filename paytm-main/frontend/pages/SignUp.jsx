@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  useEffect(()=> {
+    if(localStorage.getItem('token')) {
+      navigate('/dashboard');
+    }
+    else {
+      console.log('Login/SignIn First');
+      return;
+    }
+  })
+
 
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -23,6 +34,7 @@ const SignUp = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/user/signup', UserData);
       if(response.statusText === "OK") {
+        localStorage.setItem('token', response.data.token);
         navigate('/dashboard');
       }
       
@@ -64,7 +76,7 @@ const SignUp = () => {
 
         <button onClick={handleSubmit} className='bg-black text-white w-[280px] h-9 rounded-md mt-3 pb-1 mb-3'>Sign Up</button>
 
-        <div className='mb-5'>Already have an account? <a href="" className='underline'>Login</a></div>
+        <div className='mb-5'>Already have an account? <Link to={'/signin'} className="underline">Sign In</Link></div>
 
         </div>
 
