@@ -7,7 +7,7 @@ const SignIn = () => {
 
   useEffect(()=> {
     if(localStorage.getItem('token')) {
-      navigate('/dashboard');
+      navigate('/');
     }
     else {
       console.log('Login/SignIn First');
@@ -29,7 +29,7 @@ const SignIn = () => {
       const response = await axios.post('http://localhost:3000/api/v1/user/signin', credentials);
       if(response.statusText === "OK" && response.status === 200) {
         localStorage.setItem('token', response.data.token);
-        navigate('/dashboard');
+        navigate('/');
       }
     }catch(error) {
       console.log(error);

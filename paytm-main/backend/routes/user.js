@@ -29,7 +29,8 @@ router.post('/signup', async (req, res)=>{
         const newUser = await User.create(userData);
 
         const token = jwt.sign({
-            userId: newUser._id
+            userId: newUser._id,
+            username: newUser.firstName
         }, JWT_SECRET);
 
         Account.create({
@@ -76,7 +77,8 @@ router.post('/signin', async (req, res)=>{
     }
 
     const token = jwt.sign({
-        userId: doc._id
+        userId: doc._id,
+        username: doc.firstName,
     }, JWT_SECRET);
 
     res.status(200).json({
