@@ -14,25 +14,39 @@ const DashBoard = () => {
 
 function RenderDashboard() {
   const navigate = useNavigate();
+  const [userBalance, setUserBalance] = useState();
 
   useEffect(()=>{
     if(!localStorage.getItem('token')) {
       navigate('/signup');
       return; 
     }
+    
+    async function getBalance() {
+        const token = localStorage.getItem('token');
+        const {data} = await axios.get('http://localhost:3000/api/v1/account/balance', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return data.balance;
+    }
+
+    getBalance().then((r)=> setUserBalance(r));
+    
   });
   
   const [users, setUsers] = useRecoilState(usersatom);
   const currUser = useRecoilValue(loggeduser);
-  const userBalance = useRecoilValue(balance);
   const [search, setSearch] = useState("");
 
   useEffect(()=>{
     async function searchUser() {
       const {data} = await axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${search}`);
-      setUsers(data.users);
+      const temp = data.users.filter((usr) => usr._id !== currUser.userId);
+      setUsers(temp);
     }
-
+    
     searchUser();
   }, [search])
 
@@ -46,9 +60,9 @@ function RenderDashboard() {
       </div>
 
       {users.map(user => {
-        return <User key={user._id} firstname={user.firstName} lastname={user.lastName}/>
+        return <User key={user._id} firstname={user.firstName} userId={user._id}/>
       })}
-      
+
     </div>
   )
 }

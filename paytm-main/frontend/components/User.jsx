@@ -1,6 +1,13 @@
 import React from 'react'
+import {useNavigate} from 'react-router-dom';
 
-const User = ({firstname, lastname}) => {
+const User = ({firstname, userId}) => {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate('/sendMoney', {state: {userId: userId, name: firstname}});  
+  }
+
   return (
     <div className='flex justify-between p-3'>
         <div className='flex items-center'>
@@ -9,7 +16,7 @@ const User = ({firstname, lastname}) => {
             </div>
             <h2 className='pl-3 text-2xl font-semibold'>{firstname}</h2>
         </div>
-        <button className='bg-black text-white rounded-md p-[8px] pt-1 font-semibold'>Send Money</button>
+        <button onClick={handleClick} className='bg-black text-white rounded-md p-[8px] pt-1 font-semibold'>Send Money</button>
     </div>
   )
 }

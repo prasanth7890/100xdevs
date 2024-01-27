@@ -8,7 +8,8 @@ export const usersatom = atom({
         key:"usersatomselector",
         get: async () => {
             const {data} = await axios.get('http://localhost:3000/api/v1/user/bulk');
-            return data.users;
+            const temp = data.users.filter((usr) => usr._id !== loggeduser.userId);
+            return temp;
         }
     })
 });
@@ -43,4 +44,4 @@ export const balance = atom({
             return data.balance;
         }
     })
-})
+});
