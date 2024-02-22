@@ -2,3 +2,10 @@ node_modules
 .gitignore
 .env
 /postgress
+
+node_modules
+dist
+.wrangler
+.dev.vars
+.env
+environment.ts
