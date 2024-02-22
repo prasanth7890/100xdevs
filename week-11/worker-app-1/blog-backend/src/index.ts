@@ -5,9 +5,11 @@ import { cors } from "hono/cors";
 
 const app = new Hono();
 
-console.log();
-
 app.use(cors());
+
+app.get('/', (c) => {
+    return c.json('Helloo');
+});
 
 app.route("/users", userRouter);
 app.route('/posts', postRouter);
